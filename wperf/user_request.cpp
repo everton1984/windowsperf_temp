@@ -732,7 +732,6 @@ void user_request::parse_raw_args(wstr_vec& raw_args, const struct pmu_device_cf
 
         if (waiting_symbol)
         {
-            m_out.GetOutputStream() << L"waiting symbol" << std::endl;
             symbol_name = a;
             waiting_symbol = false;
             continue;
