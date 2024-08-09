@@ -85,6 +85,7 @@ public:
     bool do_annotate;
     bool do_disassembly;
     bool do_man;
+    bool do_symbol;
     bool do_detect = false;
     bool do_force_lock = false;     // Force lock acquire of the driver
     bool do_export_perf_data;
@@ -98,6 +99,7 @@ public:
     int count_timeline;
     uint32_t record_spawn_delay = 1000;
     std::wstring man_query_args;
+    std::wstring symbol_name;
     std::wstring sample_image_name;
     std::wstring sample_pe_file;
     std::wstring sample_pdb_file;
