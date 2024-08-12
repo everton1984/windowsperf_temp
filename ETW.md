@@ -45,11 +45,11 @@ Note: The `WevtUtil.exe` tool is included in `%windir%\System32` directory. You 
 
 1. Download locally [wperf-driver-etw-manifest.xml](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/blob/main/wperf-driver/wperf-driver-etw-manifest.xml?ref_type=heads) manifest file.
 
-**Note**: Make sure the XML file corresponds to `wperf-driver` version you are using on your system.
+**Note**: Make sure the XML file corresponds to the `wperf-driver` version you are using on your system.
 
 2. Run Command Prompt as Admin with the `Run` command window. Press `Windows`+`R` to open the `Run` window. Type `cmd` into the box and then press `Ctrl`+`Shift`+`Enter` to run the command as an Administrator.
 
-3. Change directory to where you've downloaded `wperf-driver-etw-manifest.xml` manifest file. For example if you've downloaded the file to `Downloads` directory, simply:
+3. Change directory to where you've downloaded the `wperf-driver-etw-manifest.xml` manifest file. For example if you've downloaded the file to `Downloads` directory, simply:
 
 **Note**: By default, Chrome, Firefox and Microsoft Edge download files to the `Downloads` folder located at `%USERPROFILE%\Downloads`.
 
@@ -65,7 +65,7 @@ Note: The `WevtUtil.exe` tool is included in `%windir%\System32` directory. You 
 
 Note: Command `wevtutil.exe {um | uninstall-manifest} <Manifest>` uninstalls all publishers and logs from a manifest.
 
-5. Install the manifest `wperf-driver-etw-manifest.xml` with `wevtutil` tool using below command.
+5. Install the manifest `wperf-driver-etw-manifest.xml` with the `wevtutil` tool using the below command.
 
 ```
 > %windir%\System32\wevtutil.exe im .\wperf-driver-etw-manifest.xml
