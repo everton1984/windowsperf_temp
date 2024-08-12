@@ -22,7 +22,7 @@ WindowsPerf raises corresponding PMU events from `wperf` application and `wperf-
 
 ## WPA-plugin-etl
 
-The [WPA-plugin-etl](https://gitlab.com/Linaro/WindowsPerf/wpa-plugin-etl) is a dedicated plugin developed for the Windows Performance Analyzer (WPA). Its primary function is to interpret and present event traces that have been injected by the WindowsPerf ETW (Event Tracing for Windows). These events can be injected through two main sources: the [wperf](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/tree/main/wperf?ref_type=heads) application and the [wperf-driver](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/tree/main/wperf-driver?ref_type=heads). The `wperf` application is a user-mode application, while the `wperf-driver` is a Windows Kernel Driver. 
+The [WPA-plugin-etl](https://gitlab.com/Linaro/WindowsPerf/wpa-plugin-etl) is a dedicated plugin developed for the Windows Performance Analyzer (WPA). Its primary function is to interpret and present event traces that have been injected by the WindowsPerf ETW (Event Tracing for Windows). These events can be injected through two main sources: the [wperf](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/tree/main/wperf?ref_type=heads) application and the [wperf-driver](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/tree/main/wperf-driver?ref_type=heads). The `wperf` application is a user-mode application, while the `wperf-driver` is a Windows Kernel Driver.
 
 Together, they provide a comprehensive view of system performance and behavior, making the `WPA-plugin-etl` a valuable tool for system analysis and debugging. This plugin enhances the capabilities of WPA, allowing users to delve deeper into the Arm core and uncore PMU performance characteristics of their Windows on Arm systems. It’s an essential tool for anyone looking to optimize system performance or troubleshoot issues.
 
@@ -43,7 +43,7 @@ Note: The `WevtUtil.exe` tool is included in `%windir%\System32` directory. You 
 
 ## Configuration instructions
 
-1. Download locally [wperf-driver-etw-manifest.xml](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/blob/main/wperf-driver/wperf-driver-etw-manifest.xml?ref_type=heads) manifest file. 
+1. Download locally [wperf-driver-etw-manifest.xml](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/blob/main/wperf-driver/wperf-driver-etw-manifest.xml?ref_type=heads) manifest file.
 
 **Note**: Make sure the XML file corresponds to `wperf-driver` version you are using on your system.
 
