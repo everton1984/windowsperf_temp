@@ -71,6 +71,7 @@ public:
     static bool is_help(const wstr_vec& raw_args);          // Return true if `--help` is in CLI options
     static bool user_request::check_timeout_arg(std::wstring number_and_suffix, const std::unordered_map<std::wstring, double>& unit_map);
     static double user_request::convert_timeout_arg_to_seconds(std::wstring number_and_suffix, const std::wstring& cmd_arg);
+    bool user_request::check_symbol_arg(const std::wstring& arg, const std::wstring& symbol);
 
     bool do_list;
     bool do_count;
@@ -99,7 +100,7 @@ public:
     int count_timeline;
     uint32_t record_spawn_delay = 1000;
     std::wstring man_query_args;
-    std::wstring symbol_name;
+    std::wstring symbol_arg;
     std::wstring sample_image_name;
     std::wstring sample_pe_file;
     std::wstring sample_pdb_file;
