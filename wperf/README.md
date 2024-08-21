@@ -222,7 +222,7 @@ When other `wperf` process "locked" access to the driver you will see below warn
 ```
 >wperf --version
 warning: other WindowsPerf process acquired the wperf-driver.
-Operation canceled!
+Operation cancelled!
 ```
 
 You can force the lock (and kick-out other `wperf` process from accessing Kernel Driver) with `--force-lock` command line option:
