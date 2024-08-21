@@ -39,7 +39,8 @@ Note: The `WevtUtil.exe` tool is included in `%windir%\System32` directory. You 
 > %windir%\System32\WevtUtil.exe /?
 ```
 
-- WindowsPerf Kernel Driver ETW event manifest file [wperf-driver-etw-manifest.xml](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/blob/main/wperf-driver/wperf-driver-etw-manifest.xml?ref_type=heads). This file is part of [wperf-driver](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/tree/main/wperf-driver?ref_type=heads) project.
+- WindowsPerf `wperf` ETW event manifest file [wperf-etw-manifest.xml](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/blob/main/wperf-driver/wperf-etw-manifest.xml?ref_type=heads). This file is part of [wperf](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/tree/main/wperf?ref_type=heads) project.
+- WindowsPerf `wperf` WPR profile file [wperf-app-wpr-profile.wprp](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/blob/main/wperf/wperf-app-wpr-profile.wprp?ref_type=heads).
 
 ## Configuration instructions for `wperf` ETW support
 
@@ -73,7 +74,7 @@ Note: Let's assume full path to `wperf.exe` is `%USERPROFILE%\Workspace\3.8.0\wp
 > %windir%\System32\wevtutil.exe /resourceFilePath:%USERPROFILE%\Workspace\3.8.0\wperf.exe /messageFilePath:%USERPROFILE%\Workspace\3.8.0\wperf.exe im .\wperf-etw-manifest.xml
 ```
 
-You may see below warning. To (optionally) solve this you need to add the `NT SERVICE\EventLog` user to the access list of `wperf.exe` before installing.
+You may see the warning below. To (optionally) solve this you need to add the `NT SERVICE\EventLog` user to the access list of `wperf.exe` before installing.
 ```
 **** Warning: Publisher WindowsPerf App resources could not be found or are not accessible
 to the EventLog service account (NT SERVICE\EventLog).
@@ -83,11 +84,28 @@ Note: Command `{im | install-manifest} <Manifest>` installs event publishers and
 
 ## Collecting ETW data with WindowsPerf
 
-Now you've installed ETW manifest. You are ready to capture ETW trace provided with WindowsPerf using `WPR` and visualize it with `WPA`. Follow below steps to collect the data and plot the results for your workload.
+Now you've installed the ETW manifest. You are ready to capture the ETW trace provided with WindowsPerf using `WPR` and visualize it with `WPA`. Follow below steps to collect the data and plot the results for your workload.
 
-1. Run WPR session.
+1. Run `WPR` session from `Start` -> `Search` and type `wpr`. Launch WPR.
+
+- Download locally [wperf-app-wpr-profile.wprp](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/blob/main/wperf/wperf-app-wpr-profile.wprp?ref_type=heads).
+- Select `Show options` and select `Add profiles`.
+- Find and select `wperf-app-wpr-profile.wprp` file locally. Open profile. You should now see in `Select additional profiles` tree view `WindowsPerf App ETW profile`.
+- Select other profiles if needed and press `Start` to record the ETW trace.
 
 2. Run `wperf.exe` to collect core PMU events and inject them to ETW trace.
 
-3. Visualize with `WPA` and `WPA-plugin-etl` captured ETW trace (stored with WPR in `etl` file).
+- Now you can run `wperf.exe`. The application will inject to the ETW core PMU events. When your tracing session is over stop `wperf` and also stop recording with WPR.
+- `WPR` will ask you to store the `ETL` file locally with the trace. Note that by default ETL files are stored in `%USERPROFILE%\Documents\WPR files\` folder.
+- You can now open an `ETL` file and visualize with `WPA` all traces, including one with WindowsPerf data.
 
+3. Visualize with `WPA` and `WPA-plugin-etl` captured ETW trace (stored with `WPR` in local `ETL` file).
+
+- Download locally [wpa-plugin-etl](https://gitlab.com/Linaro/WindowsPerf/wpa-plugin-etl/-/releases).
+- You can run WPA from the command line. Use `-addsearchdir PATH` command line option to tell `WPA` where `wpa-plugin-etl` DLL file is located.
+
+```
+> wpa -addsearchdir %USERPROFILE%\Workspace\3.8.0
+```
+
+`WPA` Graph Explorer should contain `PMU From WindowsPerf` data present.
