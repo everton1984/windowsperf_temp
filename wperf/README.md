@@ -607,7 +607,7 @@ Options `--timeout`, `sleep` and `-i` can be used with a number along with one, 
 
 The following restrictions apply:
 * The default unit `seconds` is used if no unit is provided as input.
-* Units may not be used in conjuction with one another: `--timeout 1m30s` is not accepted.
+* Units may not be used in conjunction with one another: `--timeout 1m30s` is not accepted.
 * Decimals may be up to 2 decimal places, and must be preceeded by a single `0`: `.001h` is not accepted.
 * Padded `0`s are not permitted: `01h` is not accepted.
 
