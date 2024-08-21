@@ -41,15 +41,15 @@ Note: The `WevtUtil.exe` tool is included in `%windir%\System32` directory. You 
 
 - WindowsPerf Kernel Driver ETW event manifest file [wperf-driver-etw-manifest.xml](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/blob/main/wperf-driver/wperf-driver-etw-manifest.xml?ref_type=heads). This file is part of [wperf-driver](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/tree/main/wperf-driver?ref_type=heads) project.
 
-## Configuration instructions
+## Configuration instructions for `wperf` ETW support
 
-1. Download locally [wperf-driver-etw-manifest.xml](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/blob/main/wperf-driver/wperf-driver-etw-manifest.xml?ref_type=heads) manifest file.
+1. Download locally [wperf-etw-manifest.xml](https://gitlab.com/Linaro/WindowsPerf/windowsperf/-/blob/main/wperf/wperf-etw-manifest.xml?ref_type=heads) manifest file.
 
-**Note**: Make sure the XML file corresponds to the `wperf-driver` version you are using on your system.
+**Note**: Make sure the XML file corresponds to the `wperf` version you are using on your system.
 
 2. Run Command Prompt as Admin with the `Run` command window. Press `Windows`+`R` to open the `Run` window. Type `cmd` into the box and then press `Ctrl`+`Shift`+`Enter` to run the command as an Administrator.
 
-3. Change directory to where you've downloaded the `wperf-driver-etw-manifest.xml` manifest file. For example if you've downloaded the file to `Downloads` directory, simply:
+3. Change directory to where you've downloaded the `wperf-etw-manifest.xml` manifest file. For example if you've downloaded the file to `Downloads` directory, simply:
 
 **Note**: By default, Chrome, Firefox and Microsoft Edge download files to the `Downloads` folder located at `%USERPROFILE%\Downloads`.
 
@@ -57,18 +57,37 @@ Note: The `WevtUtil.exe` tool is included in `%windir%\System32` directory. You 
 > cd %USERPROFILE%\Downloads
 ```
 
-4. Uninstall the manifest with `wevtutil.exe um` command in case you already have a manifest installed.
+4. Uninstall (`um`) the manifest with `wevtutil.exe um` command in case you already have a manifest installed.
 
 ```
-> %windir%\System32\wevtutil.exe um .\wperf-driver-etw-manifest.xml
+> %windir%\System32\wevtutil.exe um .\wperf-etw-manifest.xml
 ```
 
 Note: Command `wevtutil.exe {um | uninstall-manifest} <Manifest>` uninstalls all publishers and logs from a manifest.
 
-5. Install the manifest `wperf-driver-etw-manifest.xml` with the `wevtutil` tool using the below command.
+5. Install (`im`) the manifest `wperf-etw-manifest.xml` with the `wevtutil` tool using the below command.
+
+Note: Let's assume full path to `wperf.exe` is `%USERPROFILE%\Workspace\3.8.0\wperf.exe`. `/resourceFilePath:` and `/messageFilePath:` require full path to be set.
 
 ```
-> %windir%\System32\wevtutil.exe im .\wperf-driver-etw-manifest.xml
+> %windir%\System32\wevtutil.exe /resourceFilePath:%USERPROFILE%\Workspace\3.8.0\wperf.exe /messageFilePath:%USERPROFILE%\Workspace\3.8.0\wperf.exe im .\wperf-etw-manifest.xml
+```
+
+You may see below warning. To (optionally) solve this you need to add the `NT SERVICE\EventLog` user to the access list of `wperf.exe` before installing.
+```
+**** Warning: Publisher WindowsPerf App resources could not be found or are not accessible
+to the EventLog service account (NT SERVICE\EventLog).
 ```
 
 Note: Command `{im | install-manifest} <Manifest>` installs event publishers and logs from a manifest.
+
+## Collecting ETW data with WindowsPerf
+
+Now you've installed ETW manifest. You are ready to capture ETW trace provided with WindowsPerf using `WPR` and visualize it with `WPA`. Follow below steps to collect the data and plot the results for your workload.
+
+1. Run WPR session.
+
+2. Run `wperf.exe` to collect core PMU events and inject them to ETW trace.
+
+3. Visualize with `WPA` and `WPA-plugin-etl` captured ETW trace (stored with WPR in `etl` file).
+
