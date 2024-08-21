@@ -1633,7 +1633,7 @@ WindowsPerf added support (in `record` command) for the Arm Statistical Profilin
 You can use the same `--annotate` and `--disassemble` interface of WindowsPerf with one exception. To reach out to SPE resources please use `-e` command with `arm_spe_0//` options. For example:
 
 ```
->wperf record -e arm_spe_0//` -c 0 --timeout 10 -- cpython\PCbuild\arm64\python_d.exe -c 10**10**100
+>wperf record -e arm_spe_0// -c 0 --timeout 10 -- cpython\PCbuild\arm64\python_d.exe -c 10**10**100
 ```
 
 ### SPE detection
