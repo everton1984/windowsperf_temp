@@ -623,7 +623,7 @@ See the following for examples of correct usage:
 >wperf stat -c 0 -e ld_spec sleep 5m
 ```
 
-represent a duration of `10`, `3600`, `0.75` & `300` seconds respecitvely.
+represent a duration of `10`, `3600`, `0.75` & `300` seconds respectively.
 
 Similarly:
 ```
