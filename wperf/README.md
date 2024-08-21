@@ -725,7 +725,7 @@ System-wide Overall:
 
 ### Specify a range of cores
 
-Ranges are specified as `[core_number]-[core_number]`, and can be specified alongisde singular cores. For example,
+Ranges are specified as `[core_number]-[core_number]`, and can be specified alongside singular cores. For example,
 
 ```
 > wperf stat -m imix -c 0,3-5 --timeout 1 --json
