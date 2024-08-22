@@ -44,6 +44,14 @@ public:
 
     void init();
 
+    // Consts
+
+    // All availabkle filters for SPE `arm_spe_0//`
+    static const std::vector<std::wstring> m_filter_names;
+
+    // Filters also have aliases, this structure helps to translate alias to filter name
+    static const std::map<std::wstring, std::wstring> m_filter_names_aliases;
+
     // Helper functions
 
     static std::wstring get_spe_version_name(UINT64 id_aa64dfr0_el1_value);
