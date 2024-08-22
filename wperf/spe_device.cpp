@@ -409,9 +409,9 @@ const std::vector<std::wstring> spe_device::m_filter_names = {
 
 // Filters also have aliases, this structure helps to translate alias to filter name
 const std::map<std::wstring, std::wstring> spe_device::m_filter_names_aliases = {
-    {L"load_filter",     L"ld"},
-    {L"store_filter",    L"st"},
-    {L"branch_filter",   L"b"}
+    { L"ld", L"load_filter", },
+    { L"st", L"store_filter", },
+    { L"b" , L"branch_filter" }
 };
 
 spe_device::spe_device() {}
