@@ -41,12 +41,18 @@ namespace wperftest
 	{
 	public:
 
-		TEST_METHOD(test_spe_device_1)
+		TEST_METHOD(test_spe_device_filter_name)
 		{
+			Assert::IsTrue(spe_device::is_filter_name(L"load_filter"));
+			Assert::IsTrue(spe_device::is_filter_name(L"store_filter"));
+			Assert::IsTrue(spe_device::is_filter_name(L"branch"));
 		}
 
-		TEST_METHOD(test_spe_device_1)
+		TEST_METHOD(test_spe_device_filter_name_alias)
 		{
+			Assert::IsTrue(spe_device::is_filter_name(L"ld"));
+			Assert::IsTrue(spe_device::is_filter_name(L"st"));
+			Assert::IsTrue(spe_device::is_filter_name(L"b"));
 		}
 	};
 }

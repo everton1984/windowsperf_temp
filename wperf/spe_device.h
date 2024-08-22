@@ -57,4 +57,14 @@ public:
     static std::wstring get_spe_version_name(UINT64 id_aa64dfr0_el1_value);
     static bool is_spe_supported(UINT64 id_aa64dfr0_el1_value);
     static void get_samples(const std::vector<UINT8>& spe_buffer, std::vector<FrameChain>& raw_samples, std::map<UINT64, std::wstring>& spe_events);
+
+    static bool is_filter_name(std::wstring fname) {
+        if (m_filter_names_aliases.count(fname))
+            fname = m_filter_names_aliases.at(fname);
+        return std::find(m_filter_names.begin(), m_filter_names.end(), fname) != m_filter_names.end();
+    }
+
+    static bool is_filter_name_alias(std::wstring fname) {
+        return m_filter_names_aliases.count(fname);
+    }
 };
