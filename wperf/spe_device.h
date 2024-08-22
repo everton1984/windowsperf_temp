@@ -52,6 +52,9 @@ public:
     // Filters also have aliases, this structure helps to translate alias to filter name
     static const std::map<std::wstring, std::wstring> m_filter_names_aliases;
 
+    // Filter names have also short descriptions
+    static const std::map<std::wstring, std::wstring> spe_device::m_filter_names_description;
+
     // Helper functions
 
     static std::wstring get_spe_version_name(UINT64 id_aa64dfr0_el1_value);
