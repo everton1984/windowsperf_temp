@@ -33,7 +33,15 @@
             Part="last"
             Action="set"
             System="yes" />
-      
+
+        <Environment
+            Id="WPA_ADDITIONAL_SEARCH_DIRECTORIES"
+            Name="WPA_ADDITIONAL_SEARCH_DIRECTORIES"
+            Value="[INSTALLFOLDERWPA]"
+            Permanent="no"
+            Part="last"
+            Action="set"
+            System="yes" />
       </Component>
       
       <!-- WindowsPerf WPA Plugin ETL -->
