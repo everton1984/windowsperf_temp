@@ -1744,6 +1744,8 @@ sampling .... done!
                1.098 seconds time elapsed
 ```
 
+Using `^` and `$` together (e.g. `"^x_mul$"`) is the same as using neither (`"x_mul"`).
+
 ## Sampling with Arm Statistical Profiling Extension (SPE)
 
 WindowsPerf added support (in `record` command) for the Arm Statistical Profiling Extension (SPE). SPE is an optional feature in ARMv8.2 hardware that allows CPU instructions to be sampled and associated with the source code location where that instruction occurred.
