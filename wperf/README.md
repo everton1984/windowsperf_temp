@@ -507,14 +507,14 @@ note: 'e' - normal event, 'gN' - grouped event with group number N, metric name 
 
 ### Important Note: Use of curly braces in command line
 
-* PowerShell (and Develoepr PowerShell for VS):
+* PowerShell (and Developer PowerShell for VS):
 
-PowerShell treats curly braces `{}` as a special character, therefore pasing them incorrectly when used in command line.
+PowerShell treats curly braces `{}` as a special character, therefore passing them incorrectly when used in command line.
 
 Therefore, a list of events must be surrounded by quotation marks `""` when using curly braces for correct parsing:
 
 ```
-> wperf stat -e "{inst_spec,vfp_spec,ase_spec,dp_spec,ld_spec,st_spec},br_immed_spec,crypto_spec" -c 0 sleep 1
+>wperf stat -e "{inst_spec,vfp_spec,ase_spec,dp_spec,ld_spec,st_spec},br_immed_spec,crypto_spec" -c 0 sleep 1
 ```
 
 * Command Prompt (and Developer Command Prompt for VS):
