@@ -1256,7 +1256,12 @@ bool user_request::check_symbol_arg(const std::wstring& symbol, const std::wstri
     else if (arg.size() > 0)            // implied that `user_request::do_symbol` is true
     {
 
-        if (arg[0] == L'^')
+        if (arg[0] == L'^' && arg[arg.size() - 1] == L'$')
+        {
+            // both symbols are present, treat as if neither are there
+            return (WStringToLower(symbol) == WStringToLower(arg.substr(1, arg.size() - 2)));
+        }
+        else if (arg[0] == L'^')
         {
             // symbol exists at beginning
             return CaseInsensitiveWStringStartsWith(symbol, arg.substr(1, arg.size() - 1));
