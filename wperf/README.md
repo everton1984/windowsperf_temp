@@ -509,7 +509,7 @@ note: 'e' - normal event, 'gN' - grouped event with group number N, metric name 
 
 * PowerShell (and Developer PowerShell for VS):
 
-PowerShell treats curly braces `{}` as a special character, therefore passing them incorrectly when used in command line.
+[PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/overview) treats curly braces `{}` as a special character, therefore passing them incorrectly when used in command line.
 
 Therefore, a list of events must be surrounded by quotation marks `""` when using curly braces for correct parsing:
 
