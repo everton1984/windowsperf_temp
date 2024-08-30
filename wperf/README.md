@@ -515,7 +515,7 @@ PowerShell escapes `{}` curly braces, therefore, the list of events must be surr
 > wperf stat -e "{inst_spec,vfp_spec,ase_spec,dp_spec,ld_spec,st_spec},br_immed_spec,crypto_spec" -c 0 sleep 1
 ```
 
-* CommandPrompt (and Developer CommandPrompt for VS):
+* Command Prompt (and Developer Command Prompt for VS):
 
 No such special requirements
 
