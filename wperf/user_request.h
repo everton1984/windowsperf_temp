@@ -69,9 +69,9 @@ public:
     static bool is_cli_option_in_args(const wstr_vec& raw_args, std::wstring opt);    // Return true if `opt` is in CLI options
     static bool is_force_lock(const wstr_vec& raw_args);    // Return true if `--force-lock` is in CLI options
     static bool is_help(const wstr_vec& raw_args);          // Return true if `--help` is in CLI options
-    static bool user_request::check_timeout_arg(std::wstring number_and_suffix, const std::unordered_map<std::wstring, double>& unit_map);
-    static double user_request::convert_timeout_arg_to_seconds(std::wstring number_and_suffix, const std::wstring& cmd_arg);
-    bool user_request::check_symbol_arg(const std::wstring& symbol, const std::wstring& arg, const wchar_t& prefix_delim, const wchar_t& suffix_delim);
+    static bool check_timeout_arg(std::wstring number_and_suffix, const std::unordered_map<std::wstring, double>& unit_map);
+    static double convert_timeout_arg_to_seconds(std::wstring number_and_suffix, const std::wstring& cmd_arg);
+    static bool check_symbol_arg(const std::wstring& symbol, const std::wstring& arg, const wchar_t& prefix_delim, const wchar_t& suffix_delim);
 
     bool do_list;
     bool do_count;
