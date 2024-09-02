@@ -142,3 +142,26 @@ def test_cpython_bench_record_time():
     stdout, _ = run_command(cmd)
 
     assert b'seconds time elapsed' in stdout
+
+
+@pytest.mark.parametrize("arg",
+[
+   ("x_mul"),
+   ("^x_"),
+   ("_mul$"),
+   ("X_MUL"),
+   ("^x_mul$"),
+]
+)
+def test_cpython_bench_record_symbol(arg):
+    python_d_exe_path = os.path.join(CPYTHON_EXE_DIR, "python_d.exe")
+
+    if not check_if_file_exists(python_d_exe_path):
+        pytest.skip(f"Can't locate CPython native executable in {python_d_exe_path}")
+        
+    cmd = f"wperf record -e ld_spec:100000 -c 1 --symbol \"{arg}\" --timeout 3 -- {python_d_exe_path} -c 10**10**100"
+    stdout, _ = run_command(cmd)
+    
+    print(stdout)
+
+    assert b'x_mul:python312_d.dll' in stdout
