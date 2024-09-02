@@ -1248,32 +1248,28 @@ double user_request::convert_timeout_arg_to_seconds(std::wstring number_and_suff
 
 bool user_request::check_symbol_arg(const std::wstring& symbol, const std::wstring& arg, const wchar_t& prefix_delim, const wchar_t& suffix_delim)
 {
+    std::wstring lower_symbol = WStringToLower(symbol);
+    std::wstring lower_arg = WStringToLower(arg);
 
-    if (arg.size() > 0)            // implied that `user_request::do_symbol` is true
+    if (WStringStartsWith(arg, std::wstring(1, prefix_delim)) && WStringEndsWith(arg, std::wstring(1, suffix_delim)))
     {
-
-        if (arg[0] == prefix_delim && arg[arg.size() - 1] == suffix_delim)
-        {
-            // both symbols are present, treat as if neither are there
-            return (WStringToLower(symbol) == WStringToLower(arg.substr(1, arg.size() - 2)));
-        }
-        else if (arg[0] == prefix_delim)
-        {
-            // symbol exists at beginning
-            return CaseInsensitiveWStringStartsWith(symbol, arg.substr(1, arg.size() - 1));
-        }
-        else if (arg[arg.size() - 1] == suffix_delim)
-        {
-            // symbol exists at end
-            return CaseInsensitiveWStringEndsWith(symbol, arg.substr(0, arg.size() - 1));
-        }
-        else
-        {
-            // symbol matches - case insensitive
-            return (WStringToLower(symbol) == WStringToLower(arg));
-        }
+        // both delimiters are present, treat as if neither are there
+        return (lower_symbol == WStringToLower(arg.substr(1, arg.size() - 2)));
     }
-
-    return false;
+    else if (WStringStartsWith(arg, std::wstring(1, prefix_delim)))
+    {
+        // symbol exists at beginning
+        return CaseInsensitiveWStringStartsWith(symbol, arg.substr(1));
+    }
+    else if (WStringEndsWith(arg, std::wstring(1, suffix_delim)))
+    {
+        // symbol exists at end
+        return CaseInsensitiveWStringEndsWith(symbol, arg.substr(0, arg.size() - 1));
+    }
+    else
+    {
+        // symbol matches - case insensitive
+        return (lower_symbol == lower_arg);
+    }
 }
 
