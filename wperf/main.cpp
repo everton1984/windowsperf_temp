@@ -1076,7 +1076,7 @@ wmain(
                 TokenizeWideStringOfStrings(a.desc.name, L':', symbols);
                 const std::wstring& first_symbol = symbols.empty() ? L"" : symbols[0];
 
-                if ( !request.do_symbol || request.check_symbol_arg(first_symbol, request.symbol_arg) )
+                if ( !request.do_symbol || request.check_symbol_arg(first_symbol, request.symbol_arg, L'^', L'$'))
                 {
                     col_overhead.push_back(((double)a.freq * 100 / (double)total_samples[group_idx]));// +L"%");
                     col_count.push_back(a.freq);
