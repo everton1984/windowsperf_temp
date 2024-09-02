@@ -1249,11 +1249,7 @@ double user_request::convert_timeout_arg_to_seconds(std::wstring number_and_suff
 bool user_request::check_symbol_arg(const std::wstring& symbol, const std::wstring& arg)
 {
 
-    if (!user_request::do_symbol)
-    {
-        return true;
-    }
-    else if (arg.size() > 0)            // implied that `user_request::do_symbol` is true
+    if (arg.size() > 0)            // implied that `user_request::do_symbol` is true
     {
 
         if (arg[0] == L'^' && arg[arg.size() - 1] == L'$')
