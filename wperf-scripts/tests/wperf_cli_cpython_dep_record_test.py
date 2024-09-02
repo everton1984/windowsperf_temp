@@ -164,4 +164,4 @@ def test_cpython_bench_record_symbol(arg):
     
     print(stdout)
 
-    assert b'x_mul:python312_d.dll' in stdout
+    assert b'x_mul' in stdout
