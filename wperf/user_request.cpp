@@ -971,7 +971,7 @@ void user_request::parse_raw_args(wstr_vec& raw_args, const struct pmu_device_cf
             continue;
         }
 
-        if ((a == L"-s" || a == L"--symbol")  && (do_record || do_sample))
+        if (a == L"-s" || a == L"--symbol")
         {
             do_symbol = true;
             waiting_symbol = true;
