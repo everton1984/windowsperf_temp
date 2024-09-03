@@ -134,7 +134,7 @@ OPTIONS:
     --sample-display-row
         Set how many samples you want to see in the summary (50 by default).
 
-    --symbol
+    -s, --symbol
         Filter results for specific symbols (for use with 'record' and 'sample' commands).
 
     --record_spawn_delay
@@ -184,8 +184,6 @@ OPTIONS aliases:
 
     sleep
         Alias of `--timeout`.
-    -s 
-        Alias of `--symbol`.
 
 EXAMPLES:
 
@@ -1651,47 +1649,11 @@ You can either:
 
 ### Using the '--symbol' option
 
-This option filters the symbols in the output of a `record` command (and `sample` command).
+This option filters the symbols in the output of a `record` command (and `sample` command). It has the alias `-s`. and symbol name are case insensitive. 
 
-It has the alias `-s`. and symbols are case insensitive. 
+:warning: Note: the symbol argument should be wrapped with double quotes `""``.
 
-Note that the symbol argument should be wrapped with double quotes `""``.
-
-Before filtering:
-
-```
->wperf record -e ld_spec:100000 -c 1 --timeout 3 -- python_d.exe -c 10**10**100
-
-base address of 'cpython\PCbuild\arm64\python_d.exe': 0x7ff73e481288, runtime delta: 0x7ff5fe480000
-sampling ...... done!
-======================== sample source: ld_spec, top 50 hot functions ========================
-        overhead  count  symbol
-        ========  =====  ======
-           76.04    292  x_mul:python312_d.dll
-            5.47     21  _Py_atomic_load_32bit_impl:python312_d.dll
-            4.95     19  v_isub:python312_d.dll
-            4.69     18  unknown
-            2.08      8  v_iadd:python312_d.dll
-            1.82      7  PyErr_CheckSignals:python312_d.dll
-            0.78      3  _Py_ThreadCanHandleSignals:python312_d.dll
-            0.78      3  x_add:python312_d.dll
-            0.52      2  k_mul:python312_d.dll
-            0.52      2  _PyErr_CheckSignalsTstate:python312_d.dll
-            0.52      2  _PyMem_DebugRawFree:python312_d.dll
-            0.52      2  _Py_atomic_load_64bit_impl:python312_d.dll
-            0.26      1  arena_map_is_used:python312_d.dll
-            0.26      1  read_size_t:python312_d.dll
-            0.26      1  PyGILState_Check:python312_d.dll
-            0.26      1  PyThread_tss_is_created:python312_d.dll
-            0.26      1  _PyObject_Free:python312_d.dll
-          100.00%   384  top 17 in total
-
-               3.382 seconds time elapsed
-
-
-```
-
-Filtering for the symbol `x_mul_`:
+Example filtering for exact symbol `x_mul`:
 
 ```
 >wperf record -e ld_spec:100000 -c 1 --timeout 3 --symbol "x_mul" -- python_d.exe -c 10**10**100
@@ -1704,18 +1666,16 @@ sampling .....e done!
           100.00%   256  top 17 in total
 
                3.334 seconds time elapsed
-
-
 ```
 
-There are two additional options: prefix search and suffix search. 
-
-By using `^` before the prefix or `$` after the suffix, you can filter by a prefix or suffix.
+There are two additional symbol filtering options:
+- `^` before the prefix or
+- `$` after the suffix, you can filter by a prefix or suffix.
 
 For example, filtering for all symbols starting with `x_`,
 
 ```
->wperf record -e ld_spec:100000 -c 1 --timeout 1 --symbol "^x_" -- python_d.exe -c 10**10**10
+>wperf record -e ld_spec:100000 -c 1 --timeout 10 --symbol "^x_" -- python_d.exe -c 10**10**10
 base address of 'cpython\PCbuild\arm64\python_d.exe': 0x7ff62aab1288, runtime delta: 0x7ff4eaab0000
 sampling .... done!
 ======================== sample source: ld_spec, top 50 hot functions ========================
@@ -1731,7 +1691,7 @@ sampling .... done!
 Or for suffix `_mul`,
 
 ```
->wperf record -e ld_spec:100000 -c 1 --timeout 1 --symbol "mul$" -- python_d.exe -c 10**10**10
+>wperf record -e ld_spec:100000 -c 1 --timeout 10 --symbol "mul$" -- python_d.exe -c 10**10**10
 base address of 'cpython\PCbuild\arm64\python_d.exe': 0x7ff62aab1288, runtime delta: 0x7ff4eaab0000
 sampling .... done!
 ======================== sample source: ld_spec, top 50 hot functions ========================
