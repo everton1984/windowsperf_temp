@@ -163,7 +163,5 @@ def test_cpython_bench_record_symbol(arg):
     cmd = f"wperf record -e ld_spec:100000 -c 1 --symbol \"{arg}\" --timeout 3 -- {python_d_exe_path} -c 10**10**100"
     stdout, _ = run_command(cmd)
     
-    print(stdout)
-
     assert b'x_mul' in stdout
     assert b'x_mul:python' in stdout
