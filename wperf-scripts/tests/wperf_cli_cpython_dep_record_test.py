@@ -154,6 +154,7 @@ def test_cpython_bench_record_time():
 ]
 )
 def test_cpython_bench_record_symbol(arg):
+    """ Test sampling filtering for record with `-s <symbol>` """
     python_d_exe_path = os.path.join(CPYTHON_EXE_DIR, "python_d.exe")
 
     if not check_if_file_exists(python_d_exe_path):
@@ -165,3 +166,4 @@ def test_cpython_bench_record_symbol(arg):
     print(stdout)
 
     assert b'x_mul' in stdout
+    assert b'x_mul:python' in stdout
