@@ -1073,11 +1073,7 @@ wmain(
                 if (printed_sample_num > request.sample_display_row)
                     continue;
 
-                std::vector<std::wstring> symbols;
-                TokenizeWideStringOfStrings(a.desc.name, L':', symbols);
-                const std::wstring& first_symbol = symbols.empty() ? L"" : symbols[0];
-
-                if ( !request.do_symbol || request.check_symbol_arg(first_symbol, request.symbol_arg, L'^', L'$'))
+                if ( !request.do_symbol || request.check_symbol_arg(a.desc.sname, request.symbol_arg))
                 {
                     col_overhead.push_back(((double)a.freq * 100 / (double)total_samples[group_idx]));// +L"%");
                     col_count.push_back(a.freq);
