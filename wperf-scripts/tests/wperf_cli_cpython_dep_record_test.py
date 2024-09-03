@@ -133,6 +133,7 @@ def test_cpython_bench_record_hotspot(EVENT,EVENT_FREQ,HOT_SYMBOL,HOT_MINIMUM,PY
     assert median(overheads) >= HOT_MINIMUM, f"expected {HOT_MINIMUM}% sampling hotspot in {HOT_SYMBOL}, overheads={overheads}"
 
 def test_cpython_bench_record_time():
+    """ Test if we print `seconds time elapsed` with sampling.  """
     python_d_exe_path = os.path.join(CPYTHON_EXE_DIR, "python_d.exe")
 
     if not check_if_file_exists(python_d_exe_path):
@@ -142,7 +143,6 @@ def test_cpython_bench_record_time():
     stdout, _ = run_command(cmd)
 
     assert b'seconds time elapsed' in stdout
-
 
 @pytest.mark.parametrize("arg",
 [
