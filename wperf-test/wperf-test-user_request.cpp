@@ -139,5 +139,20 @@ namespace wperftest
 			Assert::AreEqual(172800.0, user_request::convert_timeout_arg_to_seconds(std::wstring(L"2d"), std::wstring(L"--timeout")));
 			Assert::AreEqual(2000.0, user_request::convert_timeout_arg_to_seconds(std::wstring(L"2000s"), std::wstring(L"--timeout")));
 		}
+
+		TEST_METHOD(test_check_symbol_arg)
+		{
+			Assert::IsTrue(user_request::check_symbol_arg(L"xmul", L"xmul"));
+			Assert::IsTrue(user_request::check_symbol_arg(L"xmul", L"^x"));
+			Assert::IsTrue(user_request::check_symbol_arg(L"xmul", L"^xm"));
+			Assert::IsTrue(user_request::check_symbol_arg(L"xmul", L"^xmul"));
+
+			Assert::IsTrue(user_request::check_symbol_arg(L"xmul", L"xmul$"));
+			Assert::IsTrue(user_request::check_symbol_arg(L"xmul", L"mul$"));
+			Assert::IsTrue(user_request::check_symbol_arg(L"xmul", L"ul$"));
+			Assert::IsTrue(user_request::check_symbol_arg(L"xmul", L"l$"));
+
+			Assert::IsTrue(user_request::check_symbol_arg(L"xmul", L"^xmul$"));
+		}
 	};
 }
