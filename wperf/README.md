@@ -1651,7 +1651,7 @@ You can either:
 
 This option filters the symbols in the output of a `record` command (and `sample` command). It has the alias `-s`. and symbol name are case insensitive. 
 
-:warning: Note: the symbol argument should be wrapped with double quotes `""``.
+:warning: Note: the symbol argument should be wrapped with double quotes.
 
 Example filtering for exact symbol `x_mul`:
 
