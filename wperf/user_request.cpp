@@ -1246,7 +1246,8 @@ double user_request::convert_timeout_arg_to_seconds(std::wstring number_and_suff
     return ConvertNumberWithUnit(number, suffix, unit_map);
 }
 
-bool user_request::check_symbol_arg(const std::wstring& symbol, const std::wstring& arg, const wchar_t& prefix_delim, const wchar_t& suffix_delim)
+bool user_request::check_symbol_arg(const std::wstring& symbol, const std::wstring& arg,
+    const wchar_t prefix_delim, const wchar_t suffix_delim)
 {
     std::wstring lower_symbol = WStringToLower(symbol);
     std::wstring lower_arg = WStringToLower(arg);

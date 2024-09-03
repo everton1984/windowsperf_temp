@@ -71,7 +71,8 @@ public:
     static bool is_help(const wstr_vec& raw_args);          // Return true if `--help` is in CLI options
     static bool check_timeout_arg(std::wstring number_and_suffix, const std::unordered_map<std::wstring, double>& unit_map);
     static double convert_timeout_arg_to_seconds(std::wstring number_and_suffix, const std::wstring& cmd_arg);
-    static bool check_symbol_arg(const std::wstring& symbol, const std::wstring& arg, const wchar_t& prefix_delim, const wchar_t& suffix_delim);
+    static bool check_symbol_arg(const std::wstring& symbol, const std::wstring& arg,
+        const wchar_t prefix_delim = PARSER_SYMBOL_PREFIX, const wchar_t suffix_delim = PARSER_SYMBOL_SUFFIX);
 
     bool do_list;
     bool do_count;
@@ -120,6 +121,9 @@ private:
     bool all_cores_p() const {
         return cores_idx.size() > 1;
     }
+
+    static const wchar_t PARSER_SYMBOL_PREFIX = L'^';
+    static const wchar_t PARSER_SYMBOL_SUFFIX = L'$';
 
     std::wstring trim(const std::wstring& str, const std::wstring& whitespace = L" \t");
 };
