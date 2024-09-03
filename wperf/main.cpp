@@ -895,6 +895,7 @@ wmain(
                                 {
                                     sd.desc = b;
                                     sd.desc.name = b.name + L":" + key;
+                                    sd.desc.sname = b.name;
                                     sd.module = &mmd;
                                     found = true;
                                     break;
